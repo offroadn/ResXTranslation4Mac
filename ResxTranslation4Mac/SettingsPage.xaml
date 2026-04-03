@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ResxTranslation4Mac.SettingsPage"
+             Title="Settings">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label
+                Text="Azure Translator Settings"
+                Style="{StaticResource Headline}"
+                Margin="0,20,0,0" />
+
+            <BoxView HeightRequest="1" Color="#333333" HorizontalOptions="Fill"/>
+            
+            <Border Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
+                <VerticalStackLayout>
+                <Label
+                    Text="Azure Translator Key"
+                    FontSize="16"
+                    FontAttributes="Bold" />
+
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                
+                    <Border Grid.Column="0" StrokeShape="RoundRectangle 10"
+                            StrokeThickness="1"
+                            Stroke="Gray"
+                            BackgroundColor="White"
+                            Padding="10,0"
+                            HeightRequest="40">
+                        <Entry
+                            x:Name="AzureKeyEntry"
+                            Placeholder="Enter your Azure Translator Key"
+                            IsPassword="True"
+                            TextColor="{AppThemeBinding Light={StaticResource MidnightBlue}, Dark={StaticResource White}}" 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource MidnightBlue}}" 
+                            FontSize = "24" 
+                            HorizontalOptions="Fill" />
+                    </Border>
+                
+                    <Button Grid.Column="1"
+                            x:Name="TogglePasswordBtn"
+                            Text="👁️"
+                            FontSize="20"
+                            WidthRequest="50"
+                            HeightRequest="40"
+                            Clicked="TogglePasswordBtn_OnClicked"
+                            VerticalOptions="Center" />
+                </Grid>
+
+            <Label
+                Text="Azure Translator Endpoint"
+                FontSize="16"
+                FontAttributes="Bold"
+                Margin="0,20,0,0" />
+
+            <Border Grid.Column="0" StrokeShape="RoundRectangle 10"
+                    StrokeThickness="1"
+                    Stroke="Gray"
+                    BackgroundColor="White"
+                    Padding="10,0"
+                    HeightRequest="40">
+            <Entry
+                x:Name="AzureEndpointEntry"
+                Placeholder="https://api.cognitive.microsofttranslator.com/"
+                TextColor="{AppThemeBinding Light={StaticResource MidnightBlue}, Dark={StaticResource White}}" 
+                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource MidnightBlue}}" 
+                FontSize = "24" 
+                HorizontalOptions="Fill" />
+            </Border>
+            
+            <Label
+                Text="Region"
+                FontSize="16"
+                FontAttributes="Bold"
+                Margin="0,20,0,0" />
+
+            <Border Grid.Column="0" StrokeShape="RoundRectangle 10"
+                    StrokeThickness="1"
+                    Stroke="Gray"
+                    BackgroundColor="White"
+                    Padding="10,0"
+                    HeightRequest="40">
+            <Entry
+                x:Name="RegionEntry"
+                Placeholder="Global"
+                TextColor="{AppThemeBinding Light={StaticResource MidnightBlue}, Dark={StaticResource White}}" 
+                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource MidnightBlue}}" 
+                FontSize = "24" 
+                HorizontalOptions="Fill" />
+            </Border>
+                </VerticalStackLayout>
+            </Border>
+            <BoxView HeightRequest="1" Color="#333333" HorizontalOptions="Fill" Margin="0,20,0,0"/>
+
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                <Button
+                    x:Name="SaveBtn"
+                    Text="💾 Save"
+                    FontSize="18"
+                    Clicked="SaveBtn_OnClicked"
+                    WidthRequest="150" />
+
+                <Button
+                    x:Name="BackBtn"
+                    Text="← Back"
+                    FontSize="18"
+                    Clicked="BackBtn_OnClicked"
+                    WidthRequest="150" />
+            </HorizontalStackLayout>
+
+            <Label
+                x:Name="StatusLabel"
+                Text=""
+                FontSize="14"
+                HorizontalOptions="Center"
+                TextColor="Green"
+                IsVisible="False" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
