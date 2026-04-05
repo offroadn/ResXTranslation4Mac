@@ -13,8 +13,6 @@
                 Text="Azure Translator Settings"
                 Style="{StaticResource Headline}"
                 Margin="0,20,0,0" />
-
-            <BoxView HeightRequest="1" Color="#333333" HorizontalOptions="Fill"/>
             
             <Border Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
                     StrokeThickness="2"
@@ -30,7 +28,7 @@
                 <Grid ColumnSpacing="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="70" />
                     </Grid.ColumnDefinitions>
                 
                     <Border Grid.Column="0" StrokeShape="RoundRectangle 10"
@@ -50,11 +48,11 @@
                     </Border>
                 
                     <Button Grid.Column="1"
+                            Margin="0,0,10,0"
                             x:Name="TogglePasswordBtn"
                             Text="👁️"
-                            FontSize="20"
-                            WidthRequest="50"
-                            HeightRequest="40"
+                            FontSize="24"
+                            BackgroundColor="{StaticResource Gray100}"
                             Clicked="TogglePasswordBtn_OnClicked"
                             VerticalOptions="Center" />
                 </Grid>
@@ -102,7 +100,7 @@
             </Border>
                 </VerticalStackLayout>
             </Border>
-            <BoxView HeightRequest="1" Color="#333333" HorizontalOptions="Fill" Margin="0,20,0,0"/>
+
 
             <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
                 <Button

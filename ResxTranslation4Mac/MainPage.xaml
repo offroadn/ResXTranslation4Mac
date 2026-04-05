@@ -3,71 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ResxTranslation4Mac.MainPage">
 
-  <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-        
-            <!-- Settings Section -->
-            <Button
-                x:Name="SettingsBtn"
-                Text="⚙️ Settings" 
-                FontSize="16"
-                Clicked="SettingsBtn_OnClicked"
-                HorizontalOptions="End" />
-        
-            <VerticalStackLayout>
-                <Image
-                    Source="resx.png"
-                    HeightRequest="500"
-                    HorizontalOptions="Fill"
-                    Aspect="AspectFill"
-                />
-                <ProgressBar x:Name="LanguagePB" Progress="0.0" ProgressColor="LawnGreen" HeightRequest="10" HorizontalOptions="Fill"></ProgressBar>
-            </VerticalStackLayout>
+        <Grid RowDefinitions="Auto,*" RowSpacing="20" Margin="0,0,0,20">
+            <VerticalStackLayout Grid.Row="0"
+                Padding="30,0"
+                Spacing="25">
             
-            <!-- Resx Location Section -->
-            <Border Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
-                    StrokeThickness="2"
-                    StrokeShape="RoundRectangle 10"
-                    Padding="20"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
-                <VerticalStackLayout Spacing="15">
-                    
-                
-                    <Label
-                        Text="{Binding ResxLocation}"
-                        Style="{StaticResource Pathline}"/>
-                    
-                    <Grid x:Name="MyGrid" RowDefinitions="Auto" ColumnSpacing="20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <!-- Checkboxes will be dynamically generated here -->
-                    </Grid>
-                    
-                    <Button
-                        x:Name="SetResxLocationBtn"
-                        Text="Set Resx Location" 
-                        FontSize="18"
-                        WidthRequest="220"
-                        Clicked="ResxBtn_OnClicked"
-                        HorizontalOptions="Start" />
+                <!-- Settings Section -->
+                <Button
+                    x:Name="SettingsBtn"
+                    Text="⚙️ Settings" 
+                    FontSize="16"
+                    Clicked="SettingsBtn_OnClicked"
+                    HorizontalOptions="End" />
+            
+                <VerticalStackLayout>
+                    <Image
+                        Source="resx3.png"
+                        
+                        Aspect="AspectFill"
+                    />
+                    <ProgressBar x:Name="LanguagePB" Progress="0.0" ProgressColor="LawnGreen" HeightRequest="10" HorizontalOptions="Fill"></ProgressBar>
                 </VerticalStackLayout>
-            </Border>
-        
-
-        
-            <!-- Key-Value Entry Section -->
-            <Border Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
-                    StrokeThickness="2"
-                    StrokeShape="RoundRectangle 10"
-                    Padding="20"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
-                <VerticalStackLayout Spacing="15">
+            </VerticalStackLayout>
+            <ScrollView Grid.Row="1" >
+                <VerticalStackLayout  Padding="30,0"
+                                      Spacing="25">
+                    <!-- Resx Section -->
+                    <Border Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 10"
+                        Padding="20"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
+                        <VerticalStackLayout Spacing="15">
+                            <!-- ResxName Entry Field -->
+                            <Label
+                                Text="ResX File Name"
+                                FontSize="16"
+                                FontAttributes="Bold" />
+                            
+                    <Grid x:Name="MyGrid1" RowDefinitions="Auto" ColumnSpacing="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="600"/>
+                        </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" StrokeShape="RoundRectangle 10"
+                                        StrokeThickness="1"
+                                        Stroke="Gray"
+                                        BackgroundColor="White"
+                                        Padding="10,0"
+                                        HeightRequest="40">
+                                    
+                            <Entry 
+                                Placeholder="Enter ResX File Name (ie: Resources, Text, etc...) " 
+                                TextColor="{AppThemeBinding Light={StaticResource MidnightBlue}, Dark={StaticResource White}}" 
+                                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource MidnightBlue}}" 
+                                FontSize = "24"
+                                Text="{Binding ResxName}"
+                                 />
+                            </Border>
+                    </Grid>
+      
+                     <!-- Key-Value Entry Section -->
                     <Grid ColumnSpacing="20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -86,7 +81,7 @@
                                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource MidnightBlue}}" 
                                FontSize = "24" 
                                Text="{Binding KeyToAdd}"
-                               WidthRequest="200" />
+                               WidthRequest="280" />
                         </Border>
                         <Border Grid.Column="1" StrokeShape="RoundRectangle 10"
                                 StrokeThickness="1"
@@ -104,6 +99,32 @@
                         </Border>
                     </Grid>
                 
+                        <Button
+                            x:Name="SetResxLocationBtn"
+                            Text="Pick Resx Location" 
+                            FontSize="18"
+                            WidthRequest="300"
+                            Clicked="ResxBtn_OnClicked"
+                            HorizontalOptions="Start" />
+
+                    <Label
+                        Text="{Binding ResxLocation}"
+                        Style="{StaticResource Pathline}"/>
+                    
+                    <Grid x:Name="MyGrid" RowDefinitions="Auto" ColumnSpacing="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <!-- Checkboxes will be dynamically generated here -->
+                    </Grid>
+                    
+  
+                </VerticalStackLayout>
+            </Border>
+        
                     <Button
                         x:Name="ApplyBtn"
                         Text="Apply" 
@@ -112,9 +133,7 @@
                         Clicked="ApplyBtn_OnClicked"
                         HorizontalOptions="Start" />
                 </VerticalStackLayout>
-               
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
-
+            </ScrollView>
+        
+    </Grid>
 </ContentPage>

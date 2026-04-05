@@ -9,7 +9,8 @@ namespace ResxTranslation4Mac;
 public partial class MainPage : ContentPage
 {
     private TextTranslationClient? client;
-    private string _resxLocation = "Please select Resx Location first ... ";
+    private string _resxLocation = "Please select Resx Location ... ";
+    private string _resxName = String.Empty;
     private string _keytoadd = string.Empty;
     private string _valuetoadd = string.Empty;
 
@@ -21,7 +22,16 @@ public partial class MainPage : ContentPage
     // Dictionary to store dynamically created checkboxes
     private Dictionary<string, (CheckBox checkBox, string languageCode, string fileName)> _languageCheckboxes = new();
 
-
+    public string ResxName
+    {
+        get => _resxName;
+        set
+        {
+            _resxName = value;
+            OnPropertyChanged(nameof(ResxName));
+        }
+    }
+    
     public string ResxLocation
     {
         get => _resxLocation;
@@ -94,10 +104,16 @@ public partial class MainPage : ContentPage
     {
         CancellationToken cancellationToken = default;
         FolderPickerResult result;
+        if (string.IsNullOrWhiteSpace(ResxName))
+        {
+            await DisplayAlert("Error", "Please provide Resx File Name.", "OK");
+            return;
+        }
+        
 #if MACCATALYST
         var folderPicker = new Platforms.MacCatalyst.FolderPickerService();
         var folderPath = await folderPicker.PickFolderAsync();
-
+        
         if (!string.IsNullOrEmpty(folderPath))
         {
             ResxLocation = folderPath;
@@ -129,9 +145,17 @@ public partial class MainPage : ContentPage
         
         foreach (var filePath in resxFiles)
         {
-            var fileName = Path.GetFileName(filePath);
-            var (languageCode, displayName) = ParseLanguageFromFileName(fileName);
-            languages.Add((fileName, languageCode, displayName));
+            if (filePath.Contains(ResxName + ".") && filePath.EndsWith(".resx"))
+            {
+                var fileName = Path.GetFileName(filePath);
+                var (languageCode, displayName) = ParseLanguageFromFileName(fileName);
+                languages.Add((fileName, languageCode, displayName));
+            }
+            else
+            {
+                ResxLocation = "No Resx file found in this folder with that name. Please select a valid Resx location or change the name of the Resx file.";
+                return; 
+            }
         }
 
         // Sort by display name for better organization
@@ -152,7 +176,7 @@ public partial class MainPage : ContentPage
                 IsChecked = true,
                 Color = Colors.Blue
             };
-
+            
             var label = new Label
             {
                 Text = displayName,
@@ -168,12 +192,12 @@ public partial class MainPage : ContentPage
 
             var verticalStack = GetOrCreateVerticalStackForColumn(column);
             verticalStack.Children.Add(stackLayout);
-
+            
             // Store the checkbox reference
             _languageCheckboxes[languageCode] = (checkBox, languageCode, fileName);
         }
     }
-
+    
     private VerticalStackLayout GetOrCreateVerticalStackForColumn(int column)
     {
         // Check if column already has a VerticalStackLayout
@@ -192,8 +216,9 @@ public partial class MainPage : ContentPage
 
     private (string languageCode, string displayName) ParseLanguageFromFileName(string fileName)
     {
+        var tempResxName = ResxName + ".";
         // Remove "Resources." prefix and ".resx" suffix
-        var baseName = fileName.Replace("Resources.", "").Replace(".resx", "");
+        var baseName = fileName.Replace(tempResxName, "").Replace(".resx", "");
 
         if (string.IsNullOrEmpty(baseName) || baseName.Equals("resx"))
         {
@@ -338,6 +363,13 @@ public partial class MainPage : ContentPage
     private async void ApplyBtn_OnClicked(object? sender, EventArgs e)
     {
         this.LanguagePB.Progress = 0;
+
+        if (string.IsNullOrWhiteSpace(ResxName))
+        {
+            await DisplayAlert("Error", "Please provide Resx Name.", "OK");
+            return;
+        }
+        
         if (!Directory.Exists(ResxLocation))
         {
             await DisplayAlert("Error", "Please select a valid Resx location.", "OK");
@@ -379,11 +411,16 @@ public partial class MainPage : ContentPage
                 LanguagePB.Progress = (double)completedLanguages / totalLanguages;
             }
 
-            await DisplayAlert("Success", $"Please run 'Generate Resources' by right clicking on Text.resx", "OK");
+            await DisplayAlert("Success", $"Please run 'Generate Resources' by right clicking on '{ResxName}.resx'",
+                "OK");
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Failed to update RESX files: {ex.Message}", "OK");
+            await DisplayAlert("Error", $"Failed to update Resx files: {ex.Message}", "OK");
+        }
+        finally
+        {
+            LanguagePB.Progress = 0;
         }
     }
 
