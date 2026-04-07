@@ -9,13 +9,23 @@
                 Spacing="25">
             
                 <!-- Settings Section -->
-                <Button
-                    x:Name="SettingsBtn"
-                    Text="⚙️ Settings" 
-                    FontSize="16"
-                    Clicked="SettingsBtn_OnClicked"
-                    HorizontalOptions="End" />
-            
+                <HorizontalStackLayout Spacing="20" HorizontalOptions="End">
+                    <Button
+                        x:Name="QuitBtn"
+                        Text="Quit" 
+                        FontSize="16"
+                        WidthRequest="120"
+                        Clicked="QuitBtn_OnClicked"
+                        HorizontalOptions="End" />
+                    <Button
+                        x:Name="SettingsBtn"
+                        Text="⚙️ Settings" 
+                        FontSize="16"
+                        WidthRequest="120"
+                        Clicked="SettingsBtn_OnClicked"
+                        HorizontalOptions="End" />
+                </HorizontalStackLayout>
+                
                 <VerticalStackLayout>
                     <Image
                         Source="resx3.png"

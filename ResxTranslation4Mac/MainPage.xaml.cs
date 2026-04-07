@@ -151,11 +151,13 @@ public partial class MainPage : ContentPage
                 var (languageCode, displayName) = ParseLanguageFromFileName(fileName);
                 languages.Add((fileName, languageCode, displayName));
             }
-            else
-            {
-                ResxLocation = "No Resx file found in this folder with that name. Please select a valid Resx location or change the name of the Resx file.";
-                return; 
-            }
+        }
+
+        if (languages.Count == 0)
+        {
+            ResxLocation =
+                "No Resx file found in this folder with that name. Please select a valid Resx location or change the name of the Resx file.";
+            return;
         }
 
         // Sort by display name for better organization
@@ -491,5 +493,10 @@ public partial class MainPage : ContentPage
 
         using var writer = XmlWriter.Create(resxFilePath, writerSettings);
         document.Save(writer);
+    }
+
+    private void QuitBtn_OnClicked(object? sender, EventArgs e)
+    {
+        App.Current.Quit();
     }
 }
