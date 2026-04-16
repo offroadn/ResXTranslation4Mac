@@ -14,5 +14,11 @@
 
 		<key>NSDocumentsFolderUsageDescription</key>
 		<string>This app needs access to select a folder containing RESX files for translation.</string>
+
+		<!-- App Icon -->
+		<key>CFBundleIconFile</key>
+		<string>MyIcon</string>
+		<key>CFBundleIconName</key>
+		<string>MyIcon</string>
 	</dict>
 </plist>

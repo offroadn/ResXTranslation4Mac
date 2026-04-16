@@ -11,7 +11,7 @@ public partial class App : Application
     {
         var window = new Window(new AppShell())
         {
-            Title = "RESX Translation Tool for the Mac",
+            Title = "ResX Translations for macOS",
             Width = 800,
             Height = 800
         };

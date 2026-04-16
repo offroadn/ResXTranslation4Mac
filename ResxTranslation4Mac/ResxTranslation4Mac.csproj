@@ -49,17 +49,34 @@
     <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-maccatalyst'">
         <CodesignEntitlements>Platforms\MacCatalyst\Entitlements.plist</CodesignEntitlements>
     </PropertyGroup>
+
+    <!-- Include Asset Catalog for MacCatalyst -->
+    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-maccatalyst'">
+        <BundleResource Include="Platforms\MacCatalyst\Assets.xcassets\**" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-maccatalyst'">
+        <BundleResource Include="Platforms\MacCatalyst\MyIcon.icns">
+            <LogicalName>MyIcon.icns</LogicalName>
+        </BundleResource>
+    </ItemGroup>
     
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4"/>
+<!--        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4"/>-->
 
         <!-- Splash Screen -->
         <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128"/>
+        <MauiImage Include="Platforms\MacCatalyst\Assets.xcassets\AppIcon.appiconset\icon_1024x1024.png" />
+        <MauiImage Include="Platforms\MacCatalyst\Assets.xcassets\AppIcon.appiconset\icon_128x128.png" />
+        <MauiImage Include="Platforms\MacCatalyst\Assets.xcassets\AppIcon.appiconset\icon_16x16.png" />
+        <MauiImage Include="Platforms\MacCatalyst\Assets.xcassets\AppIcon.appiconset\icon_256x256.png" />
+        <MauiImage Include="Platforms\MacCatalyst\Assets.xcassets\AppIcon.appiconset\icon_32x32.png" />
+        <MauiImage Include="Platforms\MacCatalyst\Assets.xcassets\AppIcon.appiconset\icon_512x512.png" />
+        <MauiImage Include="Platforms\MacCatalyst\Assets.xcassets\AppIcon.appiconset\icon_64x64.png" />
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*"/>
-        <MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185"/>
 
         <!-- Custom Fonts -->
         <MauiFont Include="Resources\Fonts\*"/>
