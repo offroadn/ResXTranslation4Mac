@@ -1,0 +1,1 @@
+# ResXTranslation4Mac
