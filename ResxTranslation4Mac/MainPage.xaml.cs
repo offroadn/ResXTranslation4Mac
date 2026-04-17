@@ -366,6 +366,12 @@ public partial class MainPage : ContentPage
     {
         this.LanguagePB.Progress = 0;
 
+        if (client == null)
+        {
+            await DisplayAlert("Error", "Azure Translation client is not initialized. Please check your settings.", "OK");
+            return;
+        }
+        
         if (string.IsNullOrWhiteSpace(ResxName))
         {
             await DisplayAlert("Error", "Please provide Resx Name.", "OK");
