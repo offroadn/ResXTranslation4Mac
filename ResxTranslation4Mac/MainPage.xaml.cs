@@ -66,9 +66,14 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         BindingContext = this;
-        InitializeClient();
     }
 
+     protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        InitializeClient();
+    }
+    
     private void InitializeClient()
     {
         try
