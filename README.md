@@ -1,10 +1,10 @@
-# ResXTranslation4Mac
+# ResXTranslation4Mac ![Resx](./ResxTranslation4Mac/Platforms/MacCatalyst/Assets.xcassets/AppIcon.appiconset/icon_32x32.png)  
 
 ## Translate any resx type of file from the MacOS
 
 Welcome to **ResXTranslation4Mac**, this saves time by utilizing Azures Translator.
 
-![Resx Translator logo](./images/main-logo.jpg)
+![Resx Translator logo](./ResxTranslation4Mac/Images/main_logo.png)
 
 Don't forget to [star (🌟) this repo](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars) to find it easier later.
 
