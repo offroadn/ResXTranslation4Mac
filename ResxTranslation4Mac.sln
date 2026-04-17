@@ -2,12 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResxTranslation4Mac", "ResxTranslation4Mac\ResxTranslation4Mac.csproj", "{2A760031-0F8F-47B4-93E1-0E01CE5B60BB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{413E298D-16AF-469B-A761-7908D8B0E95B}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Downloads\main_logo.png = ..\..\..\Downloads\main_logo.png
-		..\..\..\Desktop\icon_256x256.png = ..\..\..\Desktop\icon_256x256.png
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
