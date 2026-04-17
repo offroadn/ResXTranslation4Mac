@@ -53,8 +53,7 @@ public partial class SettingsPage : ContentPage
 
             if (string.IsNullOrWhiteSpace(apiKey))
             {
-                await DisplayAlert("Validation Error", "Please enter an Azure Translator Key.", "OK");
-                return;
+                apiKey = string.Empty;
             }
 
             if (string.IsNullOrWhiteSpace(endpoint))
